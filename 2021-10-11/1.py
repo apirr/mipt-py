@@ -91,7 +91,14 @@ class Ball:
 
 class Boris:
 
-    '''Этот класс задает Бориса'''
+    '''Этот класс задает Бориса
+           x, y - координаты
+           vx, vy - скорости
+           color - цвет
+           vx, vy - скорости
+           r - характерный размер
+           surface - личная поверхность объекта
+        '''
 
     def __init__(self):
         self.image = BORIS
@@ -113,13 +120,19 @@ class Boris:
         self.starting_time = pygame.time.get_ticks()
 
     def draw(self, surface=screen):
+        '''Draw the object
+           par: surface is the pygame surface to draw on'''
         surface.blit(self.surface, (self.x, self.y))
 
     def remove(self, surface=screen):
+        '''Remove the object
+           par: surface=screen is the surface to remove from'''
         self.color = BACKGROUND_COLOR
         circle(self.surface, self.color, (self.r, self.r), self.r)
 
     def move(self, surface=screen):
+        '''Move the object
+        par: surface=screen '''
         # self.remove(surface)
         self.x += randint(-2, 2)
         self.y += randint(-2, 2)
@@ -198,8 +211,6 @@ while not finished:
         boris_pool.append(Boris())
     draw_pool(balls_pool)
     move_pool(balls_pool)
-    draw_pool(boris_pool)
-    move_pool(boris_pool)
     for number, ball in enumerate(balls_pool):
         if ball.should_it_commit_suicide():
             balls_pool.pop(number)
